@@ -24,8 +24,7 @@ ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 DEBUG = os.getenv('DEBUG', 'True') == 'True' if ENVIRONMENT == 'development' else False
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 BACKEND_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')  
-
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -38,7 +37,7 @@ FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-CORS_ALLOWED_ORIGINS = FRONTEND_URL.split(',')
+# CORS_ALLOWED_ORIGINS = FRONTEND_URL.split(',')
 
 
 # Application definition
@@ -54,8 +53,6 @@ INSTALLED_APPS = [
     'users',
     'rest_framework',
     'rest_framework_simplejwt',
-
-
 ]
 
 MIDDLEWARE = [
@@ -87,6 +84,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
