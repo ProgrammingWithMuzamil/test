@@ -3,12 +3,12 @@ from .models import *
 from django.conf import settings
 
 class PropertySerializer(serializers.ModelSerializer):
-    img = serializers.SerializerMethodField()
+    img_url = serializers.SerializerMethodField()
     class Meta:
         model = Property
         fields = '__all__'
 
-    def get_img(self, obj):
+    def get_img_url(self, obj):
         if obj.img:
             print(f"Image found: {obj.img.name}")
             print(f"Image URL: {obj.img.url}")
