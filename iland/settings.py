@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
 DEBUG = os.getenv('DEBUG', 'True') == 'True' if ENVIRONMENT == 'development' else False
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
-BACKEND_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,test-v9ml.onrender.com').split(',')
+BACKEND_URL = os.getenv('BACKEND_URL', 'https://test-v9ml.onrender.com')
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -72,6 +72,12 @@ ROOT_URLCONF = 'iland.urls'
 
 # Authentication model
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    'users.authentication.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Media files settings (for handling uploaded files)
 MEDIA_URL = '/media/'
