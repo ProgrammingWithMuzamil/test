@@ -19,18 +19,18 @@ class PropertySerializer(serializers.ModelSerializer):
 
 
 class CollaborationSerializer(serializers.ModelSerializer):
-    img = serializers.SerializerMethodField()
-    logo = serializers.SerializerMethodField()
+    img_url = serializers.SerializerMethodField()
+    logo_url = serializers.SerializerMethodField()
     class Meta:
         model = Collaboration
         fields = '__all__'
 
-    def get_img(self, obj):
+    def get_img_url(self, obj):
         if obj.img:
             return f"{settings.BACKEND_URL}{obj.img.url}"
         return None
     
-    def get_logo(self, obj):
+    def get_logo_url(self, obj):
         if obj.logo:
             return f"{settings.BACKEND_URL}{obj.logo.url}"
         return None
@@ -39,11 +39,11 @@ class CollaborationSerializer(serializers.ModelSerializer):
 
 
 class SlideSerializer(serializers.ModelSerializer):
-    img = serializers.SerializerMethodField()
+    img_url = serializers.SerializerMethodField()
     class Meta:
         model = Slide
         fields = '__all__'
-    def get_img(self, obj):
+    def get_img_url(self, obj):
         if obj.img:
             return f"{settings.BACKEND_URL}{obj.img.url}"
         return None
@@ -51,12 +51,12 @@ class SlideSerializer(serializers.ModelSerializer):
 
 
 class YourPerfectSerializer(serializers.ModelSerializer):
-    img = serializers.SerializerMethodField()
+    img_url = serializers.SerializerMethodField()
     class Meta:
         model = YourPerfect
         fields = '__all__'
 
-    def get_img(self, obj):
+    def get_img_url(self, obj):
         if obj.img:
             return f"{settings.BACKEND_URL}{obj.img.url}"
         return None
@@ -64,12 +64,12 @@ class YourPerfectSerializer(serializers.ModelSerializer):
 
 
 class SidebarCardSerializer(serializers.ModelSerializer):
-    img = serializers.SerializerMethodField()
+    img_url = serializers.SerializerMethodField()
     class Meta:
         model = SidebarCard
         fields = '__all__'
 
-    def get_img(self, obj):
+    def get_img_url(self, obj):
         if obj.img:
             return f"{settings.BACKEND_URL}{obj.img.url}"
         return None
