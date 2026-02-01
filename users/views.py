@@ -116,6 +116,18 @@ class PropertyViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
     permission_classes = [IsAdminOrReadOnly]
 
+    def create(self, request, *args, **kwargs):
+        print(f"Request data: {request.data}")
+        print(f"Request files: {request.FILES}")
+        print(f"Content type: {request.content_type}")
+        
+        if 'img' in request.FILES:
+            print(f"Image file received: {request.FILES['img']}")
+        else:
+            print("No image file received")
+        
+        return super().create(request, *args, **kwargs)
+
 
 
 class CollaborationViewSet(viewsets.ModelViewSet):

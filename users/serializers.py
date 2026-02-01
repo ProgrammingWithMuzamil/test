@@ -10,8 +10,12 @@ class PropertySerializer(serializers.ModelSerializer):
 
     def get_img(self, obj):
         if obj.img:
+            print(f"Image found: {obj.img.name}")
+            print(f"Image URL: {obj.img.url}")
             return f"{settings.BACKEND_URL}{obj.img.url}"
-        return None
+        else:
+            print(f"No image for object {obj.id}")
+            return None
 
 
 class CollaborationSerializer(serializers.ModelSerializer):
