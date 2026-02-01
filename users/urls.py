@@ -10,11 +10,13 @@ router.register(r'yourperfect', YourPerfectViewSet)
 router.register(r'sidebarcards', SidebarCardViewSet)
 router.register(r'damac', DamacViewSet)
 router.register(r'empoweringcommunities', EmpoweringCommunitiesViewSet)
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
     path('', include(router.urls)),
     path('login/', LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('profile/', UserProfileView.as_view(), name='profile'),
 
 ]
