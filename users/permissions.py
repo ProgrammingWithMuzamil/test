@@ -31,4 +31,49 @@ class IsAdminUser(permissions.BasePermission):
     """
     
     def has_permission(self, request, view):
-        return request.user and request.user.is_authenticated and request.user.is_staff
+        return request.user and request.user.is_authenticated and request.user.is_admin_role
+
+
+class IsAdminRole(permissions.BasePermission):
+    """
+    Allows access only to users with admin role.
+    """
+    
+    def has_permission(self, request, view):
+        return request.user and request.user.is_authenticated and request.user.is_admin_role
+
+
+class IsAgentRole(permissions.BasePermission):
+    """
+    Allows access only to users with agent role.
+    """
+    
+    def has_permission(self, request, view):
+        return request.user and request.user.is_authenticated and request.user.is_agent_role
+
+
+class IsAdminOrAgentRole(permissions.BasePermission):
+    """
+    Allows access to users with admin or agent role.
+    """
+    
+    def has_permission(self, request, view):
+        return (
+            request.user and 
+            request.user.is_authenticated and 
+            (request.user.is_admin_role or request.user.is_agent_role)
+        )
+
+
+class IsAdminOnly(permissions.BasePermission):
+    """
+    Allows access only to admin users, explicitly blocking agents.
+    """
+    
+    def has_permission(self, request, view):
+        return (
+            request.user and 
+            request.user.is_authenticated and 
+            request.user.is_admin_role and 
+            not request.user.is_agent_role
+        )
